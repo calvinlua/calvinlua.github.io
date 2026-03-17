@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pawsperity — Support</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:  #fdf6ed;
+      --sand:   #f2e8d9;
+      --amber:  #c8873a;
+      --amber-light: #e8a95e;
+      --brown:  #5c3d1e;
+      --brown-mid: #8a6040;
+      --green:  #4a7c59;
+      --green-light: #d6ead9;
+      --text:   #3a2a1a;
+      --muted:  #8a7060;
+      --radius: 16px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Noise texture overlay ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Header ── */
+    header {
+      position: relative;
+      background: var(--brown);
+      padding: 64px 24px 80px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 100%, #8a6040 0%, transparent 70%);
+      opacity: 0.5;
+    }
+
+    /* decorative paw prints */
+    header::after {
+      content: '🐾';
+      position: absolute;
+      font-size: 140px;
+      opacity: 0.06;
+      top: -20px; right: -10px;
+      transform: rotate(20deg);
+    }
+
+    .logo {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 28px;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .logo-icon {
+      width: 44px; height: 44px;
+      background: var(--amber);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+    }
+
+    .logo-text {
+      font-family: 'Lora', serif;
+      font-size: 22px;
+      color: #fff;
+      letter-spacing: 0.02em;
+    }
+
+    header h1 {
+      position: relative;
+      font-family: 'Lora', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: #fff;
+      font-weight: 600;
+      line-height: 1.2;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+
+    header p {
+      position: relative;
+      margin-top: 14px;
+      color: #d4b99a;
+      font-size: 17px;
+      font-weight: 300;
+      max-width: 480px;
+      margin-inline: auto;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    /* wave divider */
+    .wave {
+      display: block;
+      width: 100%;
+      height: 60px;
+      background: var(--cream);
+      clip-path: ellipse(55% 100% at 50% 100%);
+      margin-top: -1px;
+    }
+
+    /* ── Main layout ── */
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ── Contact card ── */
+    .contact-card {
+      background: var(--brown);
+      border-radius: var(--radius);
+      padding: 36px 40px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      margin-bottom: 56px;
+      animation: fadeUp 0.6s 0.3s ease both;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(200,135,58,0.3) 0%, transparent 60%);
+    }
+
+    .contact-icon {
+      flex-shrink: 0;
+      width: 60px; height: 60px;
+      background: var(--amber);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px;
+      position: relative;
+    }
+
+    .contact-card h2 {
+      font-family: 'Lora', serif;
+      font-size: 1.4rem;
+      color: #fff;
+      font-weight: 600;
+      position: relative;
+    }
+
+    .contact-card p {
+      margin-top: 6px;
+      color: #d4b99a;
+      font-size: 15px;
+      position: relative;
+    }
+
+    .contact-card a {
+      color: var(--amber-light);
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(232,169,94,0.4);
+      transition: border-color 0.2s;
+    }
+    .contact-card a:hover { border-color: var(--amber-light); }
+
+    /* ── Section headings ── */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .section-label span {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--amber);
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--sand);
+    }
+
+    /* ── FAQ ── */
+    .faq { margin-bottom: 56px; }
+
+    .faq-item {
+      border: 1.5px solid var(--sand);
+      border-radius: var(--radius);
+      margin-bottom: 12px;
+      background: #fff;
+      overflow: hidden;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .faq-item:hover { border-color: #d4c0aa; box-shadow: 0 4px 16px rgba(92,61,30,0.06); }
+
+    .faq-item:nth-child(2) { animation-delay: 0.05s; }
+    .faq-item:nth-child(3) { animation-delay: 0.10s; }
+    .faq-item:nth-child(4) { animation-delay: 0.15s; }
+    .faq-item:nth-child(5) { animation-delay: 0.20s; }
+    .faq-item:nth-child(6) { animation-delay: 0.25s; }
+
+    .faq-q {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 20px 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .faq-chevron {
+      flex-shrink: 0;
+      width: 28px; height: 28px;
+      background: var(--sand);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.3s, background 0.2s;
+      font-size: 13px;
+      color: var(--brown-mid);
+    }
+
+    .faq-item.open .faq-chevron {
+      transform: rotate(180deg);
+      background: var(--amber);
+      color: #fff;
+    }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.25s ease;
+    }
+
+    .faq-item.open .faq-a { max-height: 400px; }
+
+    .faq-a-inner {
+      padding: 0 24px 20px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+      border-top: 1px solid var(--sand);
+      padding-top: 16px;
+    }
+
+    /* ── Tips grid ── */
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-bottom: 56px;
+    }
+
+    .tip-card {
+      background: #fff;
+      border: 1.5px solid var(--sand);
+      border-radius: var(--radius);
+      padding: 24px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .tip-card:nth-child(2) { animation-delay: 0.08s; }
+    .tip-card:nth-child(3) { animation-delay: 0.16s; }
+
+    .tip-emoji { font-size: 28px; margin-bottom: 12px; }
+
+    .tip-card h3 {
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .tip-card p { color: var(--muted); font-size: 14px; line-height: 1.65; }
+
+    /* ── Privacy strip ── */
+    .privacy-strip {
+      background: var(--green-light);
+      border: 1.5px solid #b4d9bc;
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      margin-bottom: 56px;
+    }
+
+    .privacy-strip .icon { font-size: 28px; flex-shrink: 0; margin-top: 2px; }
+
+    .privacy-strip h3 {
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--green);
+      margin-bottom: 6px;
+    }
+
+    .privacy-strip p { font-size: 14px; color: #4a6a52; line-height: 1.65; }
+    .privacy-strip a { color: var(--green); font-weight: 500; }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      border-top: 1px solid var(--sand);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    footer a { color: var(--amber); text-decoration: none; }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 540px) {
+      .contact-card { flex-direction: column; text-align: center; padding: 28px 24px; }
+      .tips-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <div class="logo-icon">🐾</div>
+      <span class="logo-text">Pawsperity</span>
+    </div>
+    <h1>How can we help?</h1>
+    <p>Support for the pet expense tracker that keeps your furry family's finances in check.</p>
+  </header>
+  <div class="wave"></div>
+
+  <main>
+
+    <!-- Contact -->
+    <div class="contact-card">
+      <div class="contact-icon">✉️</div>
+      <div>
+        <h2>Reach out directly</h2>
+        <p>
+          Questions, feedback, or something not working right? Email us at
+          <a href="mailto:wenzhenglua.biz@gmail.com">wenzhenglua.biz@gmail.com</a>
+          — we typically reply within 3 business days.
+        </p>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <section class="faq">
+      <div class="section-label"><span>Frequently Asked</span></div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          How do I add an expense for my pet?
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">
+            Tap the <strong>+</strong> button on the home screen, select your pet, choose a category (vet, food, grooming, etc.), enter the amount, and save. You can also attach a receipt photo and add notes for your records.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Can I track expenses ?
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">
+            Yes! Go to <strong>Home Page → Add Button</strong> and give each transaction a details and your receipt photo. All spending is tracked per pet, and you can view combined or individual summaries from the dashboard.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Where the cat? I don't see it.
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">
+          It's on your recurring expense page. Having a positive recurring or negative will show a different cat! We will make sure to improve the app to have more cats! 
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          How do I change the currency shown in the app?
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">
+            Head to <strong>Settings → Currency</strong> and pick your preferred currency. The app currently supports 30+ currencies with proper locale formatting.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Is my data backed up?
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">
+            When you're signed in with your account, your data is securely synced to the cloud so it's safe if you switch devices. You can also export a CSV of all expenses from <strong>Settings → Export Data</strong>.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          How do I delete my account?
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">
+            You can permanently delete your account and all associated data from <strong>Settings → Account → Delete Account</strong>. This action is irreversible, so please export your data first if you'd like a copy.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          The app isn't updating — what should I do?
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">
+            Try closing and reopening the app. If you see a banner about a new version, tap <strong>Update</strong> to get the latest fixes. Still stuck? Force-quit the app and reopen, or contact us and we'll help you out.
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Tips -->
+    <section>
+      <div class="section-label"><span>Tips & Tricks</span></div>
+      <div class="tips-grid">
+        <div class="tip-card">
+          <div class="tip-emoji">📊</div>
+          <h3>Monthly Budget View</h3>
+          <p>Set a monthly budget and get a gentle nudge when you're close to the limit.</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-emoji">🏷️</div>
+          <h3>Custom Categories</h3>
+          <p>Beyond the defaults, create your own expense categories — perfect for things like training classes or pet insurance.</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-emoji">📅</div>
+          <h3>Recurring Expenses</h3>
+          <p>Mark subscriptions like pet insurance or flea treatment as recurring so they auto-log each month without any hassle.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Privacy -->
+    <div class="privacy-strip">
+      <div class="icon">🔒</div>
+      <div>
+        <h3>Your privacy matters</h3>
+        <p>
+          Pawsperity : Cute Money Manager never sells your data. Your expense records are encrypted in transit and at rest.
+          Read our full <a href="privacy.html">Privacy Policy</a> to understand exactly what we collect and why.
+        </p>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>© 2026 Runsoft AI Solutions · <a href="privacy.html">Privacy Policy</a> · Made with 🐾 for pet lovers</p>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        // close all
+        document.querySelectorAll('.faq-item.open').forEach(el => {
+          el.classList.remove('open');
+          el.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+        });
+        // toggle clicked
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
